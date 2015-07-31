@@ -7,11 +7,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bankonet.dao.IClientDao;
+import com.bankonet.dao.IClientDaoJpaRepository;
 import com.bankonet.model.Client;
 
 /**
@@ -23,6 +25,10 @@ public class BankonetMetier implements IBankonetMetier {
 
 	@Resource(name="clientdao")
 	public IClientDao clientdao;
+	
+	@Autowired
+	@Resource(name="clientdaojpa")
+	public IClientDaoJpaRepository clientdaojpa;
 	
 	/**
 	 * 
@@ -40,7 +46,7 @@ public class BankonetMetier implements IBankonetMetier {
 	@Transactional(readOnly=true)
 	public List<Client> listClients() {
 		// TODO Auto-generated method stub
-		return clientdao.listClients();
+		return clientdaojpa.findAll();
 	}
 	@Transactional(propagation=Propagation.REQUIRED, timeout=10)
 	public void deleteClient(int idClient) {
