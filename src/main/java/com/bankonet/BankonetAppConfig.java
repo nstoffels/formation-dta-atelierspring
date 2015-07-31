@@ -21,6 +21,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 /**
  * @author ETY
@@ -112,6 +113,8 @@ public class BankonetAppConfig {
 		jtm.setEntityManagerFactory(entityManagerFactory());
 		return jtm;
 	}
-
-
+	
+	public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
 }

@@ -3,6 +3,8 @@
  */
 package com.bankonet.spring;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bankonet.metier.IBankonetMetier;
 import com.bankonet.model.Client;
@@ -20,7 +23,7 @@ import com.bankonet.model.Client;
  * @author ETY
  *
  */
-@Controller
+@RestController
 public class BankonetController {
 
 	@Autowired
@@ -40,14 +43,10 @@ public class BankonetController {
 	 * @return
 	 */
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String index(Model model){
+	public List<Client> index(Model model){
 		
-		
-		model.addAttribute("clients", bankonetmetier.listClients());
-		model.addAttribute("client",new Client());
-		model.addAttribute("info", "vide");
-		
-		return "clientsview";
+	
+		return  bankonetmetier.listClients();
 		
 	}
 	
@@ -76,7 +75,7 @@ public class BankonetController {
 				model.addAttribute("info", "editer");
 			}else{
 				bankonetmetier.addClient(c);
-				System.out.println("Client sauvegardé");
+				System.out.println("Client sauvegardï¿½");
 				model.addAttribute("info", "sauvegarde");
 			}
 			model.addAttribute("clients", bankonetmetier.listClients());
