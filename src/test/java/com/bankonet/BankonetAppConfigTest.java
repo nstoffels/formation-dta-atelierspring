@@ -1,14 +1,13 @@
 package com.bankonet;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import com.bankonet.BankonetAppConfig;
 
 /**
  * 
@@ -46,6 +45,13 @@ public class BankonetAppConfigTest {
 		assertEquals("jdbc:mysql://localhost:8889/bankospring", dataSource.getUrl());
 		
 				
+	}
+	
+	@Test
+	public void testEntityManagerFactory(){
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml"); 
+		assertNotNull(context);
 	}
 	
 	
