@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bankonet.dao.ICompteDao;
 import com.bankonet.model.Client;
 import com.bankonet.model.Compte;
-import com.bankonet.model.CompteCourant;
 
 /**
  * @author ETY
@@ -28,7 +27,7 @@ public class CompteMetierImpl implements ICompteMetier {
 	
 	/*
 	 * 
-	 * Constructeur par défaut
+	 * Constructeur par dï¿½faut
 	 * 
 	 */
 	/**
@@ -42,7 +41,7 @@ public class CompteMetierImpl implements ICompteMetier {
 		
 	/*
 	 * 
-	 * Méthodes
+	 * Mï¿½thodes
 	 * 
 	 */
 	/* (non-Javadoc)

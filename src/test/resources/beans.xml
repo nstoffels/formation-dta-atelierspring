@@ -18,91 +18,20 @@
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	<aop:aspectj-autoproxy />
 
-<!-- 	<tx:advice id="daoTxAdvice" transaction-manager="txManager"> -->
-<!-- 		<tx:attributes> -->
-<!-- 			<tx:method name="create*" propagation="MANDATORY" -->
-<!-- 				rollback-for="BankonetException" /> -->
-<!-- 		</tx:attributes> -->
-<!-- 	</tx:advice> -->
 
-
-<!-- 	<bean id="logaspect" class="com.bankonet.aspect.LogAspect"></bean> -->
-
-
-	<bean id="reportservice" class="com.bankonet.metier.ReportService"
-		scope="prototype">
-		<property name="ireportgenerator" ref="htmlReport"></property>
-	</bean>
-
-	<bean id="htmlReport" class="com.bankonet.report.ReportFactory"
-		factory-method="createReport" scope="singleton">
-		<constructor-arg value="html" />
-	</bean>
-
-	<bean id="pdfReport" class="com.bankonet.report.ReportFactory"
-		factory-method="createReport" scope="singleton">
-		<constructor-arg value="pdf" />
-	</bean>
 
 	<bean id="personne" class="com.bankonet.model.Personne" scope="prototype">
-
 	</bean>
 	<bean id="adresse" class="com.bankonet.model.Adresse" scope="prototype">
-		<property name="numero" value="5"></property>
-		<property name="rue" value="petit sommeil"></property>
-		<property name="ville" value="Repos"></property>
 	</bean>
 
 	<bean id="client" class="com.bankonet.model.Client" scope="prototype">
-		<property name="login" value="login"></property>
-		<property name="motDePasse" value="mdp"></property>
-		<property name="nom" value="DODO"></property>
-		<property name="prenom" value="Petit"></property>
-		<property name="id" value="1"></property>
-
 	</bean>
 
 	<bean id="compte" class="com.bankonet.model.Compte" scope="prototype"></bean>
 	<bean id="compteepargne" class="com.bankonet.model.CompteEpargne" scope="prototype"></bean>
 	<bean id="comptecourant" class="com.bankonet.model.CompteCourant" scope="prototype"></bean>
 	
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
-		<property name="url" value="${jdbc.url}"></property>
-		<property name="username" value="${jdbc.username}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-	</bean>
-
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="PersistUnit"></property>
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan">
-			<list>
-				<value>com.bankonet.model</value>
-			</list>
-		</property>
-		<property name="jpaVendorAdapter">
-			<bean
-				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
-				<property name="showSql" value="true" />
-				<property name="generateDdl" value="true" />
-				<property name="databasePlatform"
-					value="org.eclipse.persistence.platform.database.MySQLPlatform" />
-			</bean>
-		</property>
-		<property name="jpaDialect">
-			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
-		</property>
-		<property name="jpaPropertyMap">
-			<props>
-				<prop key="eclipselink.weaving">static</prop>
-				<prop key="eclipselink.ddl-generation">create-or-extend-tables</prop>
-			</props>
-		</property>
-
-	</bean>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>

@@ -40,9 +40,9 @@ public class BankonetAppConfigTest {
 		
 		DriverManagerDataSource dataSource = context.getBean(DriverManagerDataSource.class);
 		
-		assertEquals("bankospring", dataSource.getUsername());
-		assertEquals("bankospring", dataSource.getPassword());
-		assertEquals("jdbc:mysql://localhost:8889/bankospring", dataSource.getUrl());
+		assertEquals("root", dataSource.getUsername());
+		assertEquals("", dataSource.getPassword());
+		assertEquals("jdbc:mysql:///banque2", dataSource.getUrl());
 		
 				
 	}

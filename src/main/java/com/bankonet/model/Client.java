@@ -12,11 +12,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.eclipse.persistence.annotations.PrivateOwned;
-import org.eclipse.persistence.jpa.config.Cascade;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -39,12 +38,13 @@ public class Client extends Personne {
 	@NotNull
 	@Size(min=5, max=50)
 	String motDePasse;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER,mappedBy="client")
-	@PrivateOwned
+	
+	//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER,mappedBy="client")
+	@Transient 
 	private List<CompteCourant> compteCourantList = new ArrayList<CompteCourant>();
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER,mappedBy="client")
-	@PrivateOwned
+	//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER,mappedBy="client")
+	@Transient 
 	private List<CompteEpargne> compteEpargneList = new ArrayList<CompteEpargne>();
 
 
